@@ -14,7 +14,6 @@ const PrivateRoute = ({ user, children }) => {
       denyButtonText: `Not`,
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Now You are Login");
         navigate("/login");
       } else if (result.isDenied) {
         Swal.fire("Go To Home page");
