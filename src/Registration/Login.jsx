@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import {
   signInWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut, signInWithPopup 
+  onAuthStateChanged, signInWithPopup 
 } from "firebase/auth";
 import { auth,provider } from "../Firebase/firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
+import Swal from "sweetalert2";
 
 function Login({setUser}) {
   const [email, setEmail] = useState("");
@@ -20,18 +20,27 @@ function Login({setUser}) {
       .then((userCredential) => {
          // The signed-in user info.
         const signedInUser = userCredential.user; 
-        setUser(signedInUser);
-        navigate("/dashboard");
-        console.log("User---->", signedInUser);
+          setUser(signedInUser);
+          Swal.fire({
+            title: "You are Login",
+            icon: "success"
+          });
+         
+          navigate("/dashboard");
       })
       .catch((error) => {
         console.log("Error---->", error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Please enter the Correct Email/Password",
+         
+        });
       });
   };
 
   const signInWithGoogle = (e) => {
     e.preventDefault();
-    console.log("e==",e)
     signInWithPopup(auth, provider)
       .then((result) => {
       // The signed-in user info.

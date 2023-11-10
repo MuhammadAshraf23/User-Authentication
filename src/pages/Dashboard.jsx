@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { auth } from "./Firebase/firebase";
+import { auth } from "../Firebase/firebase";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard({ user, setUser }) {
-  console.log("user=====-", user);
+  const navigate=useNavigate()
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (authUser) => {
       if (authUser) {
@@ -18,6 +20,7 @@ function Dashboard({ user, setUser }) {
     signOut(auth)
       .then(() => {
         setUser(null);
+        navigate('/')
       })
       .catch((error) => {
         console.log("Error---", error);
