@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp} from "firebase/app";
-import { getAuth,GoogleAuthProvider } from "firebase/auth";
+import { getAuth,GoogleAuthProvider, createUserWithEmailAndPassword,signInWithEmailAndPassword,
+  onAuthStateChanged, signInWithPopup } from "firebase/auth";
 const firebaseConfig = {
   apiKey: "AIzaSyCi_zn7R5pXa6rHPPQpO6wTm23TLepX7hs",
   authDomain: "react-authentication-cb2f1.firebaseapp.com",
@@ -12,6 +13,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-export const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app)
-export const provider = new GoogleAuthProvider();
+ const app = initializeApp(firebaseConfig);
+ const auth = getAuth(app)
+  const provider = new GoogleAuthProvider();
+export {auth,provider,app, createUserWithEmailAndPassword, signInWithEmailAndPassword,onAuthStateChanged,signInWithPopup }

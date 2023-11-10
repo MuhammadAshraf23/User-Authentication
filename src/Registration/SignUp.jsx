@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../Firebase/firebase";
+import { auth,createUserWithEmailAndPassword } from "../Firebase/firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
