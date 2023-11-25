@@ -6,15 +6,15 @@ const PrivateRoute = ({ user, children }) => {
   if (user) {
     return children;
   } else {
+    alert("First you need to Login")
     Swal.fire({
       title: "Do you want to Login?",
       showDenyButton: true,
-      showCancelButton: true,
       confirmButtonText: "yes",
       denyButtonText: `Not`,
     }).then((result) => {
       if (result.isConfirmed) {
-        navigate("/login");
+        navigate("/signup");
       } else if (result.isDenied) {
         Swal.fire("Go To Home page");
         navigate("/");
