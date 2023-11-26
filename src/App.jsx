@@ -10,6 +10,7 @@ import SignUp from "./Registration/SignUp";
 import './App.css'
 function App() {
   const [user, setUser] = useState(null);
+   
 console.log("user---",user)
 
   return (

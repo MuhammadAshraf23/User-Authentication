@@ -2,8 +2,10 @@ import React, { useEffect } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../Firebase/firebase";
 import { useNavigate } from "react-router-dom";
+import { updatePassword } from "firebase/auth";
 
 function Dashboard({ user, setUser }) {
+ 
   const navigate=useNavigate()
 
   useEffect(() => {
@@ -37,6 +39,7 @@ function Dashboard({ user, setUser }) {
                 <div>
                   <h3 className="text-success text-center">
                     <b className="text-primary">Welcome</b> <br /> {user.email}
+                  
                   </h3>
                   <button type="submit"  className="btn btn-primary btn-block mt-3 w-100" onClick={LogOut}>
                     LogOut

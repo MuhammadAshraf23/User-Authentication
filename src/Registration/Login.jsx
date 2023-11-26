@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { auth,provider, signInWithEmailAndPassword, onAuthStateChanged, signInWithPopup } from "../Firebase/firebase";
+import { auth,provider, signInWithEmailAndPassword, onAuthStateChanged, signInWithPopup,sendPasswordResetEmail } from "../Firebase/firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
@@ -48,6 +48,25 @@ function Login({setUser}) {
         console.error("Error---->",error);
       });
   };
+  const handleForgotPassword = (e) => {
+    e.preventDefault();
+    // Send a password reset email
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        Swal.fire({
+          title: "Password Reset Email Sent",
+          text: "Check your email for instructions to reset your password.",
+          icon: "success",
+        });
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `Error sending password reset email: ${error.message}`,
+        });
+      });
+  };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (authUser) => {
       if (authUser) {
@@ -61,7 +80,7 @@ function Login({setUser}) {
 
   return (
     <div className="container">
-      <div className="row justify-content-center mt-5">
+      <div className="row justify-content-center mt-3">
         <div className="col-12 col-md-8 col-lg-6">
           <div className="card">
             <div className="card-body">
@@ -92,6 +111,11 @@ function Login({setUser}) {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
+                </div>
+                <div className="p-2 text-center">
+                <Link to={""} onClick={handleForgotPassword}>
+                  Forget password?
+                </Link>
                 </div>
                 <button
                   type="submit"

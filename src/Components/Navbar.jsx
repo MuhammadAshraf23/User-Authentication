@@ -1,12 +1,12 @@
 import React from "react";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <Link className="navbar-brand" to={"/"}>
           Firebase Authentication
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -18,45 +18,37 @@ const Navbar = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse justify-content-end " id="navbarNav">
+        <div
+          className="collapse navbar-collapse justify-content-end "
+          id="navbarNav"
+        >
           <ul className="navbar-nav align-items-center">
-          <Link to={'/'} className="text-decoration-none">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
+              <Link className="nav-link active" aria-current="page" to={"/"}>
                 Home
-              </a>
+              </Link>
             </li>
-            </Link>
-            <Link to={'/about'} className="text-decoration-none">
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to={"/about"}>
                 About
-              </a>
+              </Link>
             </li>
-            </Link>
             <li className="nav-item">
-            <Link to={'/dashboard'} className="text-decoration-none">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to={"/dashboard"}>
                 Dashboard
-              </a>
-            </Link>
+              </Link>
             </li>
             <li className="nav-item">
-              <a
+              <Link
                 className="nav-link"
-                href="#"
+                to={"/login"}
                 tabIndex="-1"
                 aria-disabled="true"
               >
-               <Link to={'/login'}>
-               <button
-                  type="submit"
-                  className="btn btn-primary"
-                >
+                <button type="submit" className="btn btn-primary">
                   Login
                 </button>
-               </Link>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
